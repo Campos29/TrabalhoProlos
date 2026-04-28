@@ -32,7 +32,50 @@ concluiuCurso(RA,CC):-
 	curriculo(CC, MATS),
 	aprovadoTodas(RA, MATS).
 
+%Questao 2
+curso(1, informatica).
+curso(2, eletro_eletronica).
 
-	
-			
+materia(1, tecnicas_de_programacao, 8).
+materia(2, programacao_orientada_a_objetos, 5).
+materia(3, estruturas_de_dados, 4).
+materia(4, topicos_em_metodologias_de_programacao, 3).
+materia(5, circuitos_eletricos, 4).
+materia(6, eletronica_digital, 5).
+materia(7, arquitetura_computadores, 6).
+materia(8, microcontroladores, 4).
+
+
+aluno(12808, jose).
+aluno(12080, marcos).
+aluno(12909, joao).
+aluno(12090, ana).
+
+codMat([], []).
+codMat([item(CM,_,_,_,_)|R], [CM|COD]) :-
+    codMat(R, COD).
+
+matFaltantes([], _, []).
+matFaltantes([CM|R], C, [NM|RF]) :-
+    \+ member(CM, C),
+    materia(CM, NM, _),
+    !,
+    matFaltantes(R, C, RF).
+matFaltantes([CM|R], C, RF) :-
+    member(CM, C),
+    matFaltantes(R, C, RF).
+
+falta(RA, CC, LM) :-
+    curriculo(CC, MC),       
+    historico(RA, HIST),     
+    codMat(HIST, C), 
+    matFaltantes(MC, C, LM). 
+
+%COD = Codigos
+%R = Resto
+%RF = Resto faltam
+%C = Cursadas
+%LM = Lista Materias
+%MC = Materia Curriculo
+%HIST = Historico
 
