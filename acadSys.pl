@@ -71,6 +71,32 @@ falta(RA, CC, LM) :-
     codMat(HIST, C), 
     matFaltantes(MC, C, LM). 
 
+%Questao 3
+extraCod([], _, []).
+extraCod([CM|RE], CUR, [CM,|RE]) :-
+    \+ member(CM, CUR),
+    !,
+    extraCod(R, CUR, RE).
+
+extraCod([CM|R], CUR, RE) :-
+    member(CM, CUR),
+    extraCod(R, CUR, RE).
+
+nomeMaterias([], []).
+nomeMaterias([CM|R], [NM|RN]) :-
+    materia(CM, NM, _),
+    nomeMaterias(R, RN).
+
+
+extra(RA, CC, QUAIS) :-
+    historico(RA, HIST),
+    codMat(HIST, COD),
+    curriculo(CC, CURSO),
+    extraCod(COD, CURSO, EXTRAS),
+    nomeMaterias(EXTRAS, QUAIS).
+
+
+
 %COD = Codigos
 %R = Resto
 %RF = Resto faltam
@@ -78,4 +104,7 @@ falta(RA, CC, LM) :-
 %LM = Lista Materias
 %MC = Materia Curriculo
 %HIST = Historico
+%CUR = Curriculo
+%RN = Resto nome
+%NM = Nome Materia
 
