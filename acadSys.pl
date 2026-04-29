@@ -95,7 +95,24 @@ extra(RA, CC, QUAIS) :-
     extraCod(COD, CURSO, EXTRAS),
     nomeMaterias(EXTRAS, QUAIS).
 
+%Questao 4
+contarObrigatorias([], _, 0).
+contarObrigatorias([CM|R], COD, TOTAL) :-
+    member(CM, COD),
+    !,
+    contarObrigatorias(R, COD, T),
+    TOTAL is T + 1.
 
+contarObrigatorias([_|R], COD, TOTAL) :-
+    contarObrigatorias(R, COD, TOTAL).
+
+jafoi(CC, RA, QUANTO) :-
+    curriculo(CC, CURSO),
+    historico(RA, HIST),
+    codMat(HIST, COD),
+    contarObrigatorias(CURSO, COD, FEITAS),
+    length(CURSO, TOTAL),
+    QUANTO is (FEITAS / TOTAL) * 100
 
 %COD = Codigos
 %R = Resto
