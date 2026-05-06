@@ -73,13 +73,12 @@ falta(RA, CC, LM) :-
 
 %Questao 3
 extraCod([], _, []).
-extraCod([CM|RE], CUR, [CM,|RE]) :-
+extraCod([CM|R], CUR, [CM|RE]) :-
     \+ member(CM, CUR),
     !,
     extraCod(R, CUR, RE).
 
-extraCod([CM|R], CUR, RE) :-
-    member(CM, CUR),
+extraCod([_|R], CUR, RE) :-
     extraCod(R, CUR, RE).
 
 nomeMaterias([], []).
@@ -112,7 +111,7 @@ jafoi(CC, RA, QUANTO) :-
     codMat(HIST, COD),
     contarObrigatorias(CURSO, COD, FEITAS),
     length(CURSO, TOTAL),
-    QUANTO is (FEITAS / TOTAL) * 100
+    QUANTO is (FEITAS / TOTAL) * 100.
 
 %COD = Codigos
 %R = Resto
