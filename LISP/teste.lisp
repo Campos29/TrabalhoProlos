@@ -15,3 +15,9 @@
 
 (setq AGENDA (excluir AGENDA '(Rose 32666556)))
 (format t "Apos excluir ultimo telefone da Rose: ~a~%" AGENDA)
+
+(format t "~%--- Testes Telefones ---~%")
+(format t "Telefones Jose: ~a~%" (Telefones AGENDA 'Jose))
+(format t "Telefones Bel: ~a~%" (Telefones AGENDA 'Bel))
+(format t "Telefones Beto: ~a~%" (Telefones AGENDA 'Beto))
+(format t "Telefones Rose (removida): ~a~%" (Telefones AGENDA 'Rose))

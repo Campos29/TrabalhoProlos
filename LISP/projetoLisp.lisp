@@ -32,3 +32,8 @@
 
 (defun excluir (agenda par)
   (excluir-aux agenda (car par) (car (cdr par))))
+
+(defun Telefones (agenda nome)
+  (cond ((null agenda) 'INEXISTENTE)
+        ((eq (car (car agenda)) nome) (cdr (car agenda)))
+        (t (Telefones (cdr agenda) nome))))
